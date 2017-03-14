@@ -4,3 +4,5 @@
 .idea/workspace.xml
 out/
 src/test/
+node_modules
+build
