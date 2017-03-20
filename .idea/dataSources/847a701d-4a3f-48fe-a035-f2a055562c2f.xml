@@ -12,5 +12,52 @@
     <schema id="7" name="sakila"/>
     <schema id="8" name="sys"/>
     <schema id="9" name="world"/>
+    <table id="10" parent="1" name="stockitem"/>
+    <table id="11" parent="1" name="user"/>
+    <column id="12" parent="10" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="13" parent="10" name="category">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="14" parent="10" name="image">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="15" parent="10" name="manuf">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="16" parent="10" name="price">
+      <mandatory>1</mandatory>
+      <data-type>double|0</data-type>
+    </column>
+    <column id="17" parent="10" name="title">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="18" parent="10" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="19" parent="11" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="20" parent="11" name="address">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="21" parent="11" name="age">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="22" parent="11" name="password">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="23" parent="11" name="username">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="24" parent="11" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
   </database-model>
 </dataSource>

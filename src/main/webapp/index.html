@@ -2,15 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="/node_modules/angular/angular.js"></script>
-    <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css" />
+    <link rel="stylesheet" href="app/public/css/bootstrap.css" type="text/css">
     <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/js/mdb.min.js"></script>
+    <script href="http://localhost:35729/livereload.js"></script>
+    <script src="app/public/static/app.js"></script>
+    <script src="app/public/components/shared/appController.js"></script>
+    <script src="app/public/components/header/TopNavBarController.js"></script>
+    <script src="app/public/components/mainMenu/MainMenuController.js"></script>
+    <script src="app/public/components/products/ProductsController.js"></script>
+    <script src="app/public/components/login/LoginController.js"></script>
     <title>Hello</title>
 </head>
-<body>
-This is the body of the index.html page
-<div data-ui-view="" data-autoscroll="false" class="wrapper"></div>
+<body ng-app="electricStore">
+<ui-view></ui-view>
+<!--http://localhost:8080/build/app/views/app.html-->
 
 </body>
 </html>

@@ -2,18 +2,22 @@ package entities;
 
 import javax.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(name = "stockItem.findAll", query = "select i from StockItem i"),
+        @NamedQuery(name = "stockItem.findById", query = "select i from StockItem i where i.stockItemId=:stockItemId")
+})
 
 @Entity
 public class StockItem {
 
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private int stockItemId;
     private String title, manuf, category, image;
     private double price;
 
-    public StockItem(int id, String title, String manuf, String category, String image, double price) {
-        this.id = id;
+    public StockItem(String title, String manuf, String category, String image, double price) {
         this.title = title;
         this.manuf = manuf;
         this.category = category;
@@ -71,5 +75,16 @@ public class StockItem {
 
 
     public StockItem() {
+    }
+
+    @ManyToOne(optional = false)
+    private Comment comments;
+
+    public Comment getComments() {
+        return comments;
+    }
+
+    public void setComments(Comment comments) {
+        this.comments = comments;
     }
 }

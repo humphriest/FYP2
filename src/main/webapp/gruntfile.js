@@ -2,7 +2,16 @@ module.exports = function(grunt) {
 
     // Project config
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+        pkg: grunt.file.readJSON('package.json'),bower_concat: {
+            all: {
+                dest: 'build/app/assets/js/_bower.js',
+                cssDest: 'build/app/assets/css/_bower.css',
+                bowerOptions: {
+                    relative: false
+                }
+            }
+        },
+
         clean: [
             'build/**/*.*'
         ],
@@ -71,8 +80,8 @@ module.exports = function(grunt) {
         },
         watch:{
             scripts: {
-                files:['*.js', 'app/**/*.*','!**/built.*'],
-                tasks: ['clean', 'concat', 'copy'],
+                files:['*.js','app/**/**/*.*', 'app/**/*.*','!**/built.*'],
+                tasks: ['clean', 'concat', 'bower_concat', 'copy'],
                 options: {
                     interupt: true,
                     livereload: true
@@ -87,12 +96,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-bower-concat');
 
     //Concat js and css files
     grunt.registerTask('build', [
         'clean',
         'concat',
         'cssmin',
+        'bower_concat',
         'copy:views',
         'watch'
 

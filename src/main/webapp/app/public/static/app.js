@@ -4,7 +4,6 @@
     window.App = angular.module('electricStore', [
         'ngAnimate',
         'ngResource',
-        'ui.bootstrap',
         'ui.router'
     ])
         .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
@@ -18,30 +17,33 @@
                 .state('app', {
                     url: '/app',
                     abstract: true,
-                    templateUrl: 'views/app.html',
+                    templateUrl: 'build/app/views/app.html',
                     controller: 'appController'
                 })
                 .state('app.home', {
                     url: '/home',
-                    templateUrl: 'views/home.html',
+                    templateUrl: 'build/app/views/home.html',
                     controller: 'MainMenuController'
                 })
                 .state('login',{
                     url: '/login',
-                    controller: 'LoginController',
-                    templateUrl: 'views/login.html'
+                    templateUrl: 'build/app/views/login.html',
+                    controller: 'LoginController'
                 })
-                .state('signup',{
-                    url: '/signup',
-                    controller: 'SignupController',
-                    templateUrl: 'views/signup.html'
-                })
-
-
+                .state('app.products',{
+                    url: '/products',
+                    templateUrl: 'build/app/views/products.html',
+                    controller: 'ProductsController'
+                });
+            /*.state('signup',{
+             url: '/signup',
+             controller: 'SignupController',
+             templateUrl: 'build/app/views/signup.html'
+             })*/
         }]);
+    /*
 
-
-    var injector = angular.injector(['ng']);
-    var $http = injector.get("$http");
+     var injector = angular.injector(['ng']);
+     var $http = injector.get("$http");*/
 
 })();

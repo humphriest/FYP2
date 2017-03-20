@@ -1,0 +1,27 @@
+{
+  "name": "electricStore",
+  "version": "0.0.1",
+  "authors": [
+    "GIT"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "dependencies": {
+    "angular": "1.5.8",
+    "angular-animate": "1.5.8",
+    "angular-resource": "1.5.8",
+    "angular-ui-router": "latest",
+    "MDBootstrap": "^4.3.1"
+  },
+  "resolutions": {
+    "angular": "1.5.8"
+  }
+}

@@ -1,8 +1,6 @@
 package entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  *
@@ -13,8 +11,9 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String username;
     private String address;
 
@@ -71,5 +70,16 @@ public class User {
     }
 
     public User() {
+    }
+
+    @ManyToOne(optional = false)
+    private Comment comments;
+
+    public Comment getComments() {
+        return comments;
+    }
+
+    public void setComments(Comment comments) {
+        this.comments = comments;
     }
 }
