@@ -2,10 +2,9 @@ package entities;
 
 import javax.persistence.*;
 
-/**
- *
- * Created by Tim on 05/12/2016.
- */
+@NamedQueries({
+        @NamedQuery(name = "User.findByUsername", query = "select u from User u where u.username=:username")
+})
 
 @Entity
 public class User {
@@ -15,19 +14,28 @@ public class User {
     private int id;
 
     private String username;
+    private String password;
     private String address;
+    private int age;
+    private boolean isAdmin;
 
-    public User(int id, String username, String address, String password, int age) {
-        this.id = id;
+
+    public User(String username, String address, String password, int age, boolean isAdmin) {
         this.username = username;
-        this.address = address;
         this.password = password;
+        this.address = address;
         this.age = age;
+        this.isAdmin = isAdmin;
+
     }
 
-    private String password;
-    private int age;
+    public boolean isAdmin() {
+        return isAdmin;
+    }
 
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
     public int getId() {
         return id;
     }
@@ -72,7 +80,7 @@ public class User {
     public User() {
     }
 
-    @ManyToOne(optional = false)
+    /*@ManyToOne(optional = false)
     private Comment comments;
 
     public Comment getComments() {
@@ -81,5 +89,5 @@ public class User {
 
     public void setComments(Comment comments) {
         this.comments = comments;
-    }
+    }*/
 }

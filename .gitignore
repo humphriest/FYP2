@@ -6,3 +6,4 @@ out/
 src/test/
 node_modules
 build
+bower_components

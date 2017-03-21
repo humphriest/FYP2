@@ -17,12 +17,21 @@ public class StockItem {
     private String title, manuf, category, image;
     private double price;
 
-    public StockItem(String title, String manuf, String category, String image, double price) {
+    public StockItem(int stockItemId, String title, String manuf, String category, String image, double price) {
+        this.stockItemId = stockItemId;
+
         this.title = title;
         this.manuf = manuf;
         this.category = category;
         this.image = image;
         this.price = price;
+    }
+    public int getStockItemId() {
+        return stockItemId;
+    }
+
+    public void setStockItemId(int stockItemId) {
+        this.stockItemId = stockItemId;
     }
 
     public int getId() {
@@ -77,7 +86,7 @@ public class StockItem {
     public StockItem() {
     }
 
-    @ManyToOne(optional = false)
+    /*@ManyToOne(optional = false)
     private Comment comments;
 
     public Comment getComments() {
@@ -86,5 +95,5 @@ public class StockItem {
 
     public void setComments(Comment comments) {
         this.comments = comments;
-    }
+    }*/
 }

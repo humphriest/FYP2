@@ -5,15 +5,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.io.Serializable;
 
-//import entity.Student;
-
 
 public class persistenceUtil implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
 
-    protected static EntityManagerFactory emf =
+    private static EntityManagerFactory emf =
             Persistence.createEntityManagerFactory("fyp2");
 
 
@@ -46,11 +44,6 @@ public class persistenceUtil implements Serializable {
     public static EntityManager createEM() {
         return emf.createEntityManager();
     }
-
-
-
-
-
 
 }
 

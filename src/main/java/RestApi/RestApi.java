@@ -31,7 +31,7 @@ public class RestApi {
 
         userDAO.createUser(newUser);
 
-        StockItem item = new StockItem("tv", "SONY", "electronics", "", 129.50);
+        StockItem item = new StockItem(1, "tv", "SONY", "electronics", "", 129.50);
 
         itemDao.createStockItem(item);
 

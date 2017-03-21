@@ -12,21 +12,21 @@ public class Comment {
 
     public Comment(){}
 
-    public Comment(User user, StockItem item){
+    /*public Comment(User user, StockItem item){
         this.user = user;
         this.item = item;
-    }
+    }*/
     @Id
     @Column
     private int id;
     private String body;
     private Date timestamp;
 
-    @OneToMany(mappedBy = "comments")
+    /*@OneToMany(mappedBy = "comments")
     protected User user;
 
     @OneToMany(mappedBy = "comments")
-    protected StockItem item;
+    protected StockItem item;*/
 
     public int getId() {
         return id;
@@ -52,12 +52,10 @@ public class Comment {
         this.timestamp = timestamp;
     }
 
-    public Comment(int id, String body, Date timestamp, User user, StockItem item) {
+    public Comment(int id, String body, Date timestamp) {
 
         this.id = id;
         this.body = body;
         this.timestamp = timestamp;
-        this.user = user;
-        this.item = item;
     }
 }
