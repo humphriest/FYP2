@@ -1,12 +1,15 @@
 package entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @NamedQueries({
         @NamedQuery(name = "User.findByUsername", query = "select u from User u where u.username=:username")
 })
 
 @Entity
+@XmlRootElement
 public class User {
 
     @Id
@@ -36,6 +39,8 @@ public class User {
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
+
+    @XmlElement
     public int getId() {
         return id;
     }
@@ -44,6 +49,7 @@ public class User {
         this.id = id;
     }
 
+    @XmlElement
     public String getAddress() {
         return address;
     }
@@ -52,7 +58,7 @@ public class User {
         this.address = address;
     }
 
-
+    @XmlElement
     public int getAge() {
         return age;
     }
@@ -61,6 +67,7 @@ public class User {
         this.age = age;
     }
 
+    @XmlElement
     public String getUsername() {
         return username;
     }
@@ -69,6 +76,7 @@ public class User {
         this.username = username;
     }
 
+    @XmlElement
     public String getPassword() {
         return password;
     }

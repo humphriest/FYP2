@@ -1,6 +1,8 @@
 package entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @NamedQueries({
         @NamedQuery(name = "stockItem.findAll", query = "select i from StockItem i"),
@@ -8,6 +10,7 @@ import javax.persistence.*;
 })
 
 @Entity
+@XmlRootElement
 public class StockItem {
 
     @Id
@@ -26,6 +29,7 @@ public class StockItem {
         this.image = image;
         this.price = price;
     }
+    @XmlElement
     public int getStockItemId() {
         return stockItemId;
     }
@@ -33,7 +37,7 @@ public class StockItem {
     public void setStockItemId(int stockItemId) {
         this.stockItemId = stockItemId;
     }
-
+    @XmlElement
     public int getId() {
         return id;
     }
@@ -42,6 +46,7 @@ public class StockItem {
         this.id = id;
     }
 
+    @XmlElement
     public String getTitle() {
         return title;
     }
@@ -50,6 +55,7 @@ public class StockItem {
         this.title = title;
     }
 
+    @XmlElement
     public String getManuf() {
         return manuf;
     }
@@ -58,6 +64,7 @@ public class StockItem {
         this.manuf = manuf;
     }
 
+    @XmlElement
     public String getCategory() {
         return category;
     }
@@ -66,6 +73,7 @@ public class StockItem {
         this.category = category;
     }
 
+    @XmlElement
     public String getImage() {
         return image;
     }
@@ -74,6 +82,7 @@ public class StockItem {
         this.image = image;
     }
 
+    @XmlElement
     public double getPrice() {
         return price;
     }

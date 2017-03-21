@@ -1,6 +1,8 @@
 package entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.*;
 
 @NamedQueries({
@@ -8,6 +10,7 @@ import java.util.*;
 })
 
 @Entity
+@XmlRootElement
 public class Comment {
 
     public Comment(){}
@@ -28,6 +31,7 @@ public class Comment {
     @OneToMany(mappedBy = "comments")
     protected StockItem item;*/
 
+    @XmlElement
     public int getId() {
         return id;
     }
@@ -36,6 +40,7 @@ public class Comment {
         this.id = id;
     }
 
+    @XmlElement
     public String getBody() {
         return body;
     }
@@ -44,6 +49,7 @@ public class Comment {
         this.body = body;
     }
 
+    @XmlElement
     public Date getTimestamp() {
         return timestamp;
     }
@@ -53,7 +59,6 @@ public class Comment {
     }
 
     public Comment(int id, String body, Date timestamp) {
-
         this.id = id;
         this.body = body;
         this.timestamp = timestamp;
