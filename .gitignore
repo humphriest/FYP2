@@ -1,7 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
-.idea/dataSources.local.xml
-.idea/vcs.xml
-.idea/workspace.xml
+.idea/
 out/
 src/test/
 node_modules

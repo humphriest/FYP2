@@ -13,9 +13,16 @@ public class StockItemApi {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/createItem")
-    public String createUser(){
-        StockItem item = new StockItem(1,"TV", "LAVA", "electronics", "", 150);
+    @Path("/createItem/{id}/{title}/{manuf}/{cat}/{img}/{price}")
+    public String createUser(
+            @PathParam("id") int id,
+            @PathParam("title") String title,
+            @PathParam("manuf") String manuf,
+            @PathParam("cat") String cat,
+            @PathParam("img") String img,
+            @PathParam("price") double price
+    ){
+        StockItem item = new StockItem(id, title, manuf, cat, img, price);
         itemDao.createStockItem(item);
         return "Success";
     }

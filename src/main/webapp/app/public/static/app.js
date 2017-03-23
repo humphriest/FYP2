@@ -34,6 +34,16 @@
                     url: '/products',
                     templateUrl: 'build/app/views/products.html',
                     controller: 'ProductsController'
+                })
+                .state('app.createProduct',{
+                    url: '/createProduct',
+                    templateUrl: 'build/app/views/createProduct.html',
+                    controller: 'ProductsController'
+                })
+                .state('app.register',{
+                    url: '/register',
+                    templateUrl: 'build/app/views/register.html',
+                    controller: 'RegisterController'
                 });
             /*.state('signup',{
              url: '/signup',

@@ -1,0 +1,22 @@
+.custom-card {
+    margin-bottom:15px;
+    height:200px;
+}
+.photo img{
+    height: 120px;
+    width: 300px;
+    padding: 10px;
+}
+.title{
+    color: #5D6267;
+    font-weight: bold;
+    text-align: center;
+}
+.manuf{
+
+}
+.price{
+    font-size: 40px;
+    color: #E3444E;
+    text-align: center;
+}

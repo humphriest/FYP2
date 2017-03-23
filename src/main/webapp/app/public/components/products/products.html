@@ -1,6 +1,26 @@
 <h1 class="text-center">Products</h1>
-{{productsMessage}}
-{{items}}
+<div class="btn btn-primary" ng-click="create()">Create a product</div>
 <div ng-repeat="item in items">
-    {{item}}
+    <div class="col-sm-4">
+        <div class="card card-primary custom-card">
+            <div class="card-block">
+
+                <div class="photo">
+                    <img ng-src="{{item.stockItem.image}}" />
+                </div>
+                <div class="title text-center">
+                    {{item.stockItem.manuf}} {{item.stockItem.title}}
+                </div>
+                <!--{{item.stockItem.category}}-->
+                <div class="price">
+                    {{item.stockItem.price}}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<div class="col-sm-3"></div>
+
+{{items}}

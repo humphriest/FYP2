@@ -22,7 +22,6 @@ public class StockItem {
 
     public StockItem(int stockItemId, String title, String manuf, String category, String image, double price) {
         this.stockItemId = stockItemId;
-
         this.title = title;
         this.manuf = manuf;
         this.category = category;
