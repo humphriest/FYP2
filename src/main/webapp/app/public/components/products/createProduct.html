@@ -1,30 +1,29 @@
 <div class="col-sm-5 col-sm-offset-3">
     <div class="container-fluid">
         <div class="md-form">
-            <input class="form-control" type="text" ng-model="itemId" required>
+            <input class="form-control" type="text" ng-model="item.stockItemId" required>
             <label>Item Id</label>
         </div>
         <div class="md-form">
-            <input type="text" ng-model="title" required>
+            <input type="text" ng-model="item.title" required>
             <label >title</label>
         </div>
         <div class="md-form">
-            <input type="text" ng-model="category" required>
+            <input type="text" ng-model="item.category" required>
             <label>Category</label>
         </div>
         <div class="md-form">
-            <input type="text" ng-model="manuf" required>
+            <input type="text" ng-model="item.manuf" required>
             <label>Manufacturer</label>
         </div>
         <div class="md-form">
-            <input type="text" ng-model="image" required>
+            <input type="text" ng-model="item.image" required>
             <label>Image</label>
         </div>
         <div class="md-form">
-            <input type="number" min="0" ng-model="price" required>
+            <input type="number" min="0" ng-model="item.price" required>
             <label>Price</label>
         </div>
-        <button class="btn btn-primary" ng-click="saveItem()">Save Item</button>
-        <button class="btn btn-default" ng-click="saveItemNotStringify()">Save Item Not Stringify</button>
+        <button class="btn btn-primary" ng-click="saveItemNotStringify()">Save Item</button>
     </div>
 </div>

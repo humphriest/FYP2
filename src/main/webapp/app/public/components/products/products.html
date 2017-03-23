@@ -1,19 +1,39 @@
 <h1 class="text-center">Products</h1>
 <div class="btn btn-primary" ng-click="create()">Create a product</div>
-<div ng-repeat="item in items">
-    <div class="col-sm-4">
-        <div class="card card-primary custom-card">
-            <div class="card-block">
-
-                <div class="photo">
-                    <img ng-src="{{item.stockItem.image}}" />
-                </div>
-                <div class="title text-center">
-                    {{item.stockItem.manuf}} {{item.stockItem.title}}
-                </div>
-                <!--{{item.stockItem.category}}-->
-                <div class="price">
-                    {{item.stockItem.price}}
+<div class="col-sm-3">
+    <div class="card card-primary">
+        <div class="card-block">
+            Area for categories and searches
+            <input class="search-field"
+                    type="text"
+                    placeholder="Search..."
+                    ng-model="searchBar">
+            <div class="filter-college" ng-click="clearAll()">Clear All</div>
+            Categories
+            <input type="checkbox" ng-model="categories.tv">
+            Tv
+            <input type="checkbox" ng-model="categories.watch">
+            Watches
+            <input type="checkbox" ng-model="categories.laptop">
+            Laptops
+        </div>
+    </div>
+</div>
+<div class="col-sm-9">
+    <div ng-repeat="item in items | filter:searchBar | customFilter:categories">
+        <div class="col-sm-3">
+            <div class="well well-sm"><!--card card-primary custom-card-->
+                <div class="card-block">
+                    <div class="photo">
+                        <img ng-src="{{item.stockItem.image}}" />
+                    </div>
+                    <div class="title text-center">
+                        {{item.stockItem.manuf}} {{item.stockItem.title}}
+                    </div>
+                    <!--{{item.stockItem.category}}-->
+                    <div class="price">
+                        €{{item.stockItem.price}}
+                    </div>
                 </div>
             </div>
         </div>

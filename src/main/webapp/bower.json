@@ -19,7 +19,8 @@
     "angular-animate": "1.5.8",
     "angular-resource": "1.5.8",
     "angular-ui-router": "latest",
-    "MDBootstrap": "^4.3.1"
+    "MDBootstrap": "^4.3.1",
+    "ng-backstretch": "^0.1.4-beta"
   },
   "resolutions": {
     "angular": "1.5.8"

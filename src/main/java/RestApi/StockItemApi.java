@@ -1,30 +1,31 @@
 package RestApi;
 
 import DAO.StockItemDAO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.StockItem;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
 import java.util.List;
 
 @Path("/stockApi")
 public class StockItemApi {
     private StockItemDAO itemDao = new StockItemDAO();
 
-    @GET
+    @POST
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/createItem/{id}/{title}/{manuf}/{cat}/{img}/{price}")
-    public String createUser(
-            @PathParam("id") int id,
-            @PathParam("title") String title,
-            @PathParam("manuf") String manuf,
-            @PathParam("cat") String cat,
-            @PathParam("img") String img,
-            @PathParam("price") double price
-    ){
-        StockItem item = new StockItem(id, title, manuf, cat, img, price);
+    @Path("/createItem")
+    public StockItem createItem(String jsonItem){
+        StockItem item = null;
+        try {
+            item = mapStockItem(jsonItem);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         itemDao.createStockItem(item);
-        return "Success";
+        return item;
     }
 
     @GET
@@ -33,4 +34,12 @@ public class StockItemApi {
     public List<StockItem> getAllItems(){
         return itemDao.findAllItems();
     }
+
+    private StockItem mapStockItem(String jsonItem) throws IOException {
+        StockItem item = null;
+        item = new ObjectMapper().readValue(jsonItem, StockItem.class);
+
+        return item;
+    }
 }
+
