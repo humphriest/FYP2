@@ -19,24 +19,16 @@ public class User {
     private String password;
     private String address;
     private int age;
-    private boolean isAdmin;
+    private boolean admin;
 
 
-    public User(String username, String address, String password, int age, boolean isAdmin) {
+    public User(String username, String address, String password, int age, boolean admin) {
         this.username = username;
         this.password = password;
         this.address = address;
         this.age = age;
-        this.isAdmin = isAdmin;
+        this.admin = admin;
 
-    }
-
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
     }
 
     @XmlElement
@@ -82,6 +74,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
     public User() {

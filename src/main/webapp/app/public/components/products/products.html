@@ -5,9 +5,9 @@
         <div class="card-block">
             Area for categories and searches
             <input class="search-field"
-                    type="text"
-                    placeholder="Search..."
-                    ng-model="searchBar">
+                   type="text"
+                   placeholder="Search..."
+                   ng-model="searchBar">
             <div class="filter-college" ng-click="clearAll()">Clear All</div>
             Categories
             <input type="checkbox" ng-model="categories.tv">
@@ -22,17 +22,25 @@
 <div class="col-sm-9">
     <div ng-repeat="item in items | filter:searchBar | customFilter:categories">
         <div class="col-sm-3">
-            <div class="well well-sm"><!--card card-primary custom-card-->
+            <div class="well well-sm">
                 <div class="card-block">
+                    <div class="right">
+                        <i class="material-icons">add_shopping_cart</i>
+                    </div>
                     <div class="photo">
                         <img ng-src="{{item.stockItem.image}}" />
                     </div>
-                    <div class="title text-center">
-                        {{item.stockItem.manuf}} {{item.stockItem.title}}
+                    <div style="height: 45px">
+                        <div class="title text-center">
+                            {{item.stockItem.manuf}} {{item.stockItem.title}}
+                        </div>
                     </div>
                     <!--{{item.stockItem.category}}-->
                     <div class="price">
                         €{{item.stockItem.price}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger">More Info</button>
                     </div>
                 </div>
             </div>
