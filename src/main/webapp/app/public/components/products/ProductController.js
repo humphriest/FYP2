@@ -1,7 +1,7 @@
 (function(){
     'use strict';
-    App.controller('ProductController', ['$scope','$http','$state',
-        function($scope, $http, $state){
+    App.controller('ProductController', ['$scope','$http','$state','ProductService','$stateParams',
+        function($scope, $http, $state, ProductService, $stateParams){
 
             $scope.productsMessage = "products";
 
@@ -9,10 +9,12 @@
 
             console.log($scope.item+ " item<<");
 
-            $scope.searchBar = "";
-            $http.get('/restful-services/stockApi/getAllItems')
+            $scope.currentItem = JSON.parse($stateParams.stockItemId);
+            console.log($scope.currentItem);
+
+            ProductService.getItemById(JSON.stringify($scope.currentItem))
                 .then(function(res){
-                    $scope.items = res.data;
+                    $scope.item = res.data;
                     console.log($scope.items+" items");
                 }, function(err){
                     console.log(err);

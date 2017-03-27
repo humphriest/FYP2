@@ -1,7 +1,7 @@
 (function(){
     'use strict';
-    App.controller('LoginController', ['$scope','$http','$state','UserService',
-        function($scope, $http, $state, UserService){
+    App.controller('LoginController', ['$scope','$http','$state','UserService','$cookies',
+        function($scope, $http, $state, UserService, $cookies){
 
             $scope.loginMessage = "login message from loginController";
 
@@ -21,22 +21,11 @@
                         UserService.loginUser(JSON.stringify($scope.loginUser))
                             .then(function (res) {
                                 $scope.currentUser = res.data.user;
+                                $cookies.put('testCookie', $scope.currentUser);
                             }).catch(function (err) {
                             console.log("error: "+err);
                             $scope.currentUser = null;
                         });
-                        /*$http.post('/restful-services/userApi/loginUser/', JSON.stringify($scope.loginUser))
-                         .then(function (res) {
-                         if(res == null){
-                         console.log("login error");
-                         } else{
-                         $scope.currentUser = res.data.user;
-                         console.log(res);
-                         console.log($scope.currentUser);
-                         console.log("success");
-                         $state.go('app.home');
-                         }
-                         })*/
                     }else{
                         console.log("inner toastr error");
                     }

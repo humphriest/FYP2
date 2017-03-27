@@ -10,7 +10,7 @@
             };
 
             this.getItemById = function(item){
-                return $http.get(baseUrl + '/current', item);
+                return $http.post(baseUrl + '/getItemById', item);
             };
 
             this.addItem = function(item){

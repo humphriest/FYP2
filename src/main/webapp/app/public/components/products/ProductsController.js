@@ -20,9 +20,6 @@
 
             $scope.saveItemNotStringify = function () {
                 ProductService.addItem(JSON.stringify($scope.item))
-/*
-                $http.post('/restful-services/stockApi/createItem/', JSON.stringify($scope.item))
-*/
                     .then(function (res) {
                         console.log(res);
                     })

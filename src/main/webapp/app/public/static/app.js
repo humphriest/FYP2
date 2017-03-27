@@ -4,7 +4,8 @@
     window.App = angular.module('electricStore', [
         'ngAnimate',
         'ngResource',
-        'ui.router'
+        'ui.router',
+        'ngCookies'
     ])
         .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
             $locationProvider.html5Mode(false);

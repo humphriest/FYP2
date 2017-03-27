@@ -35,11 +35,32 @@ public class StockItemApi {
         return itemDao.findAllItems();
     }
 
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/getItemById")
+    public StockItem getItem(String itemJson){
+        StockItem item = null;
+
+        try {
+            item = mapStockItem(itemJson);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert item != null;
+        StockItem finalItem = itemDao.getStockItemById(item.getStockItemId());
+        if(finalItem == null)
+            return null;
+        else
+            return finalItem;
+    }
+
     private StockItem mapStockItem(String jsonItem) throws IOException {
         StockItem item = null;
         item = new ObjectMapper().readValue(jsonItem, StockItem.class);
 
         return item;
     }
+
+
 }
 
