@@ -1,7 +1,7 @@
 (function(){
     'use strict';
-    App.controller('ProductsController', ['$scope','$http','$state',
-        function($scope, $http, $state){
+    App.controller('ProductsController', ['$scope','$http','$state','ProductService',
+        function($scope, $http, $state, ProductService){
 
             $scope.productsMessage = "products";
 
@@ -10,7 +10,7 @@
             console.log($scope.item+ " item<<");
 
             $scope.searchBar = "";
-            $http.get('/restful-services/stockApi/getAllItems')
+            ProductService.getProducts()
                 .then(function(res){
                     $scope.items = res.data;
                     console.log($scope.items+" items");
@@ -19,7 +19,10 @@
                 });
 
             $scope.saveItemNotStringify = function () {
+                ProductService.addItem(JSON.stringify($scope.item))
+/*
                 $http.post('/restful-services/stockApi/createItem/', JSON.stringify($scope.item))
+*/
                     .then(function (res) {
                         console.log(res);
                     })
@@ -38,6 +41,16 @@
             };
 
             $scope.categories={tv: false, watch: false, laptop: false};
+
+            $scope.viewProduct= function (id) {
+                $state.go('app.product', {
+                    stockItemId: JSON.stringify(id)
+                });
+            };
+
+            $scope.addToCart = function (item) {
+
+            }
         }])
         .filter('customFilter', function() {
         return function(items, categories) {

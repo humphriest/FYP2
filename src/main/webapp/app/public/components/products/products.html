@@ -25,7 +25,7 @@
             <div class="well well-sm">
                 <div class="card-block">
                     <div class="right">
-                        <i class="material-icons">add_shopping_cart</i>
+                        <i class="material-icons shopping-cart" ng-click="addToCart(item.stockItem.stockItemId)">add_shopping_cart</i>
                     </div>
                     <div class="photo">
                         <img ng-src="{{item.stockItem.image}}" />
@@ -40,7 +40,7 @@
                         €{{item.stockItem.price}}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger">More Info</button>
+                        <button type="button" class="btn btn-danger" ng-click="viewProduct(item.stockItem.stockItemId)">More Info</button>
                     </div>
                 </div>
             </div>

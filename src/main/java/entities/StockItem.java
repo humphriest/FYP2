@@ -16,17 +16,19 @@ public class StockItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private int stockItemId;
-    private String title, manuf, category, image;
+    private int stockItemId, quantity;
+    private String title, manuf, category, image, description;
     private double price;
 
-    public StockItem(int stockItemId, String title, String manuf, String category, String image, double price) {
+    public StockItem(int stockItemId, String title, String manuf, String category, String image, double price, int quantity, String description) {
         this.stockItemId = stockItemId;
         this.title = title;
         this.manuf = manuf;
         this.category = category;
         this.image = image;
         this.price = price;
+        this.quantity = quantity;
+        this.description = description;
     }
     @XmlElement
     public int getStockItemId() {
@@ -90,6 +92,21 @@ public class StockItem {
         this.price = price;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public StockItem() {
     }

@@ -1,7 +1,7 @@
 (function(){
     'use strict';
-    App.controller('LoginController', ['$scope','$http','$state',
-        function($scope, $http, $state){
+    App.controller('LoginController', ['$scope','$http','$state','UserService',
+        function($scope, $http, $state, UserService){
 
             $scope.loginMessage = "login message from loginController";
 
@@ -18,18 +18,25 @@
 
                 if($scope.username != null || $scope.username != ""){
                     if($scope.password != null || $scope.password != ""){
-                        $http.post('/restful-services/userApi/loginUser/', JSON.stringify($scope.loginUser))
+                        UserService.loginUser(JSON.stringify($scope.loginUser))
                             .then(function (res) {
-                                if(res == null){
-                                    console.log("login error");
-                                } else{
-                                    $scope.currentUser = res.data.user;
-                                    console.log(res);
-                                    console.log($scope.currentUser);
-                                    console.log("success");
-                                    $state.go('app.home');
-                                }
-                            })
+                                $scope.currentUser = res.data.user;
+                            }).catch(function (err) {
+                            console.log("error: "+err);
+                            $scope.currentUser = null;
+                        });
+                        /*$http.post('/restful-services/userApi/loginUser/', JSON.stringify($scope.loginUser))
+                         .then(function (res) {
+                         if(res == null){
+                         console.log("login error");
+                         } else{
+                         $scope.currentUser = res.data.user;
+                         console.log(res);
+                         console.log($scope.currentUser);
+                         console.log("success");
+                         $state.go('app.home');
+                         }
+                         })*/
                     }else{
                         console.log("inner toastr error");
                     }
@@ -44,10 +51,9 @@
 
                 if($scope.user.password == $scope.confirmPassword) {
                     console.log("Inside if statement");
-                    $http.post('/restful-services/userApi/createUser/', JSON.stringify($scope.user))
+                    UserService.addUser(JSON.stringify($scope.user))
                         .then(function (res) {
                             console.log(res.data);
-
                         })
                         .catch(function (err) {
                             console.log(err + " error here");

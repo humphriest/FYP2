@@ -35,6 +35,14 @@
                     templateUrl: 'build/app/views/products.html',
                     controller: 'ProductsController'
                 })
+                .state('app.product',{
+                    url: '/product/:stockItemId',
+                    templateUrl: 'build/app/views/product.html',
+                    controller: 'ProductController',
+                    params:{
+                        'stockItemId': ''
+                    }
+                })
                 .state('app.createProduct',{
                     url: '/createProduct',
                     templateUrl: 'build/app/views/createProduct.html',
