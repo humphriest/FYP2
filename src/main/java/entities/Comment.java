@@ -15,21 +15,17 @@ public class Comment {
 
     public Comment(){}
 
-    /*public Comment(User user, StockItem item){
-        this.user = user;
-        this.item = item;
-    }*/
     @Id
     @Column
     private int id;
     private String body;
     private Date timestamp;
 
-    /*@OneToMany(mappedBy = "comments")
-    protected User user;
+    @ManyToOne
+    private User user;
 
-    @OneToMany(mappedBy = "comments")
-    protected StockItem item;*/
+    @ManyToOne
+    private StockItem item;
 
     @XmlElement
     public int getId() {

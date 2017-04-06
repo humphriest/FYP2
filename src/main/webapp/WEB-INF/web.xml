@@ -31,7 +31,7 @@
 
     <context-param>
         <param-name>resteasy.resources</param-name>
-        <param-value>RestApi.StockItemApi, RestApi.UserApi</param-value>
+        <param-value>RestApi.StockItemApi, RestApi.UserApi, RestApi.CartApi</param-value>
     </context-param>
 
     <context-param>

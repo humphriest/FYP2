@@ -5,7 +5,8 @@
         'ngAnimate',
         'ngResource',
         'ui.router',
-        'ngCookies'
+        'ngCookies',
+        'ngStorage'
     ])
         .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
             $locationProvider.html5Mode(false);
@@ -53,16 +54,11 @@
                     url: '/register',
                     templateUrl: 'build/app/views/register.html',
                     controller: 'RegisterController'
+                })
+                .state('app.cart',{
+                    url: '/cart',
+                    templateUrl: 'build/app/views/cart.html',
+                    controller: 'CartController'
                 });
-            /*.state('signup',{
-             url: '/signup',
-             controller: 'SignupController',
-             templateUrl: 'build/app/views/signup.html'
-             })*/
         }]);
-    /*
-
-     var injector = angular.injector(['ng']);
-     var $http = injector.get("$http");*/
-
 })();

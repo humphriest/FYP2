@@ -1,11 +1,13 @@
 (function(){
     'use strict';
-    App.controller('ProductsController', ['$scope','$http','$state','ProductService',
-        function($scope, $http, $state, ProductService){
+    App.controller('ProductsController', ['$scope','$http','$state','ProductService','$cookieStore',
+        function($scope, $http, $state, ProductService, $cookieStore){
 
             $scope.productsMessage = "products";
 
             $scope.item = {};
+            $scope.cartItem = {};
+            $scope.currentUser = $cookieStore.get('userCookie');
 
             console.log($scope.item+ " item<<");
 
@@ -45,8 +47,18 @@
                 });
             };
 
-            $scope.addToCart = function (item) {
-
+            $scope.addToCard = function (item) {
+                $scope.cartItem.stockItem = item;
+                $scope.cartItem.user = $scope.currentUser;
+                $scope.cartItem.paid = false;
+                CartService.addItemToCart(JSON.stringify($scope.cartItem))
+                    .then(function (res) {
+                        // $rootScope.updateCart();
+                        console.log(res);
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    })
             }
         }])
         .filter('customFilter', function() {

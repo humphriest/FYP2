@@ -1,0 +1,37 @@
+<h1 class="text-center">Shopping Cart</h1>
+<hr>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>
+            Item
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Remove
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            {{item.title}}
+        </td>
+        <td>
+            <input class="input-light-bg" ng-model="item.quantity">
+            <input class="input-light-bg" ng-model="{{item.quantity}}">
+        </td>
+        <td>
+            {{item.price}}
+        </td>
+        <td>
+            <button class="btn btn-outline-danger">Remove</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

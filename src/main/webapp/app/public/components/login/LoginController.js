@@ -1,7 +1,7 @@
 (function(){
     'use strict';
-    App.controller('LoginController', ['$scope','$http','$state','UserService','$cookies',
-        function($scope, $http, $state, UserService, $cookies){
+    App.controller('LoginController', ['$scope','$http','$state','UserService','$cookieStore',
+        function($scope, $http, $state, UserService, $cookieStore){
 
             $scope.loginMessage = "login message from loginController";
 
@@ -18,10 +18,11 @@
 
                 if($scope.username != null || $scope.username != ""){
                     if($scope.password != null || $scope.password != ""){
-                        UserService.loginUser(JSON.stringify($scope.loginUser))
+                        $http.post('/restful-services/userApi/loginUser', JSON.stringify($scope.loginUser))
                             .then(function (res) {
                                 $scope.currentUser = res.data.user;
-                                $cookies.put('testCookie', $scope.currentUser);
+                                $cookieStore.put('userCookie', $scope.currentUser);
+                                $state.go('app.home');
                             }).catch(function (err) {
                             console.log("error: "+err);
                             $scope.currentUser = null;

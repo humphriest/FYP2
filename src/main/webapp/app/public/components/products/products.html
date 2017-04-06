@@ -24,8 +24,8 @@
         <div class="col-sm-3">
             <div class="well well-sm">
                 <div class="card-block">
-                    <div class="right">
-                        <i class="material-icons shopping-cart" ng-click="addToCart(item.stockItem.stockItemId)">add_shopping_cart</i>
+                    <div class="right" ng-if="currentUser.username != null">
+                        <i class="material-icons shopping-cart" ng-click="addToCart(item.stockItem)">add_shopping_cart</i>
                     </div>
                     <div class="photo">
                         <img ng-src="{{item.stockItem.image}}" />

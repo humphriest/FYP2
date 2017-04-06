@@ -39,15 +39,7 @@ public class StockItemApi {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getItemById")
     public StockItem getItem(String itemJson){
-        StockItem item = null;
-
-        try {
-            item = mapStockItem(itemJson);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        assert item != null;
-        StockItem finalItem = itemDao.getStockItemById(item.getStockItemId());
+        StockItem finalItem = itemDao.getStockItemById(Integer.parseInt(itemJson));
         if(finalItem == null)
             return null;
         else

@@ -1,42 +1,36 @@
 <div ng-controller="TopNavBarController">
     <nav class="navbar navbar-toggleable-md navbar-dark bg-primary">
         <div class="container">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <a class="navbar-brand" title="home" href="#">
                 <strong>ElectronicStore</strong>
             </a>
             <div class="collapse navbar-collapse" id="navbarNav1">
-                <ul class="navbar-nav mr-auto">
+                <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item active">
                         <a class="nav-link">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" ng-click="login()">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" ng-click="products()">Products</a>
                     </li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right text-white">
+                    <li ng-if="currentUser.username == null" class="navbar-btn">
+                        <a title="login" ng-click="login()">
+                            Login
+                        </a>
+                    </li>
+                    <li ng-if="currentUser.username != null" class="nav-item">
+                        <a class="nav-link" title="Logout" ng-click="logout()">
+                            Logout
+                        </a>
+                    </li>
+                    <li ng-if="currentUser.username != null" class="nav-item">
+                        <a class="nav-link" title="cart" ng-click="viewCart()">
+                            Shopping Cart
+                        </a>
+                    </li>
+                </ul>
             </div>
-       <!-- <ul class="nav navbar-nav navbar-right">
-            <li class="navbar-btn">
-                <div title="login" ng-click="login()">
-                    Login
-                </div>
-            </li>
-            <li class="navbar-btn">
-                <div title="products" ng-click="products()">
-                    Products
-                </div>
-            </li>
-            <li class="navbar-btn">
-                <a title="login">
-                    Login
-                </a>
-            </li>
-        </ul>-->
         </div>
 
     </nav>
