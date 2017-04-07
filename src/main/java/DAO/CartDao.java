@@ -38,6 +38,18 @@ public class CartDao {
             } else
                 return carts;
         }
+        public List<Cart> getCartById(int id){
+            EntityManager em = persistenceUtil.createEM();
+            List<Cart> carts = (List<Cart>)
+                    em.createNamedQuery("cart.findById").
+                            setParameter("id", id).getResultList();
+            em.close();
+
+            if(carts.size() == 0){
+                return null;
+            } else
+                return carts;
+        }
 
         public void deleteCart(Cart cart){
             persistenceUtil.remove(cart);

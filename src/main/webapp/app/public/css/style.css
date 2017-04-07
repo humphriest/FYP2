@@ -33,3 +33,7 @@
 .nav-item{
     padding: 0 10px !important;
 }
+img .cartImg{
+    height: 40px;
+    width: 40px;
+}

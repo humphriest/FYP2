@@ -1,7 +1,7 @@
 (function(){
     'use strict';
-    App.controller('ProductsController', ['$scope','$http','$state','ProductService','$cookieStore',
-        function($scope, $http, $state, ProductService, $cookieStore){
+    App.controller('ProductsController', ['$scope','$http','$state','ProductService','$cookieStore','CartService',
+        function($scope, $http, $state, ProductService, $cookieStore, CartService){
 
             $scope.productsMessage = "products";
 
@@ -47,7 +47,7 @@
                 });
             };
 
-            $scope.addToCard = function (item) {
+            $scope.addToCart = function (item) {
                 $scope.cartItem.stockItem = item;
                 $scope.cartItem.user = $scope.currentUser;
                 $scope.cartItem.paid = false;

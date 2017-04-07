@@ -47,7 +47,6 @@ public class CartApi {
             e.printStackTrace();
         }
 
-
         if (user != null) {
             newUser = userDao.getUserByUsername(user.getUsername());
         }
@@ -60,13 +59,32 @@ public class CartApi {
                         realCart.add(c);
                     }
                 }
-            }else{
                 return realCart;
+            }else{
+                return null;
             }
         }else{
             return null;
         }
-        return null;
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/updatePaid")
+    public Cart updateCart(String cartJson){
+        Cart cart = null;
+
+        try {
+            cart = mapCart(cartJson);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (cart != null) {
+            cartDao.getCartById(cart.getId());
+        }else{
+            return null;
+        }
+        return cart;
     }
 
     @POST

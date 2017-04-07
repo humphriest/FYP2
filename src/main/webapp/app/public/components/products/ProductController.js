@@ -20,10 +20,12 @@
                     console.log(err);
                 });
 
-            $scope.addToCard = function (item) {
+            $scope.addToCart = function (item) {
                 $scope.cartItem.stockItem = item;
                 $scope.cartItem.user = $scope.currentUser;
                 $scope.cartItem.paid = false;
+                $scope.cartItem.quantity = 1;
+                $scope.totalPrice = 0;
                 CartService.addItemToCart(JSON.stringify($scope.cartItem))
                     .then(function (res) {
                        // $rootScope.updateCart();

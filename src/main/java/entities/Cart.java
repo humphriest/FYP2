@@ -6,7 +6,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @NamedQueries({
         @NamedQuery(name = "cart.findAll", query = "select i from Cart i"),
-        @NamedQuery(name = "cart.findByUser", query = "select i from Cart i where i.user=:user")
+        @NamedQuery(name = "cart.findByUser", query = "select i from Cart i where i.user=:user"),
+        @NamedQuery(name = "cart.findById", query = "select i from Cart i where i.id=:id")
 })
 
 @Entity
@@ -21,12 +22,33 @@ public class Cart {
     @Id
     private int id;
     private Boolean paid;
+    private int quantity;
+    private double totalPrice;
 
     @ManyToOne
     private User user;
 
     @ManyToOne
     private StockItem stockItem;
+
+    @XmlElement
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @XmlElement
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
 
     @XmlElement
     public int getId() {
