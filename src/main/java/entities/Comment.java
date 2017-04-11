@@ -6,7 +6,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.*;
 
 @NamedQueries({
-        @NamedQuery(name = "comment.findAll", query = "select c from Comment c")
+        @NamedQuery(name = "comment.findAll", query = "select c from Comment c"),
+        @NamedQuery(name = "comment.findByItem", query = "select c from Comment c where c.item=:item")
 })
 
 @Entity

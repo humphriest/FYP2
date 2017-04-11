@@ -42,6 +42,7 @@ public class CartDao {
             } else
                 return carts;
         }
+
         public List<Cart> getCartById(int id){
             EntityManager em = persistenceUtil.createEM();
             List<Cart> carts = (List<Cart>)

@@ -18,8 +18,7 @@
   "homepage": "https://github.com/humphriest/fyp2#readme",
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "bootstrap-star-rating": "^4.0.2",
-    "jquery": "^3.2.1"
+    "bootstrap-star-rating": "^4.0.2"
   },
   "devDependencies": {
     "chai": "~3.0.0",

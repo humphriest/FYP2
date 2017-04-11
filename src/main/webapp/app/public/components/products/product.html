@@ -2,9 +2,26 @@
     <div class="col-sm-12">
         <div class="col-sm-4 col-sm-offset-1">
             <img ng-src="{{item.image}}">
-        </div>
-        <div class="container">
-            {{item.description}}
+            <div class="container">
+                {{item.description}}
+            </div>
+            <div class="card card-primary">
+                <div class="card-block">
+                    <div class="card-title">
+                        Review
+                    </div>
+                    <div class="card-block">
+                        <div class="md-form">
+                            <label>Comment:</label>
+                            <input title="comment" type="text" class="md-textarea" ng-model="comment.body" />
+                            <hr />
+                            <label for="input-1" class="control-label">Rate This</label>
+                            <input id="input-1" value="3" class="rating" data-min="0" data-max="5" data-step="1">
+                        </div>
+                        <button type="button" class="btn btn-info" ng-click="comment(item)">Add Review</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-sm-5 col-sm-offset-1">
             <div class="card card-outline-primary">
@@ -13,13 +30,13 @@
                         <h2>{{item.title}}</h2>
                         <h4>{{item.manuf}}</h4>
                         <h4>{{item.price}}</h4>
-                        <label for="input-1" class="control-label">Rate This</label>
-                        <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1">
+                        <label for="rating" class="control-label">Rate This</label>
+                        <input id="rating" value="item.averageRating" class="rating" data-min="0" data-max="5" data-step="1">
                         <h4>Left in Stock: {{item.quantity}}</h4>
                         <p ng-if="currentUser.username != null">
                             <button class="btn btn-indigo" ng-click="addToCart(item)">Add to Cart</button>
                         </p>
-                        <div star-rating rating="starRating" click="addRating(param, i)" mouse-hover="" mouse-leave=""></div>
+                        <!--<div star-rating rating="starRating" click="addRating(param, i)" mouse-hover="" mouse-leave=""></div>-->
                     </div>
                 </div>
             </div>
