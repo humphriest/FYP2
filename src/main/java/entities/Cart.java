@@ -18,8 +18,8 @@ public class Cart {
 
     }
 
-    @GeneratedValue
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private Boolean paid;
     private int quantity;

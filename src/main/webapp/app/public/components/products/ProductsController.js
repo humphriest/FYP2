@@ -9,6 +9,7 @@
             $scope.cartItem = {};
             $scope.currentUser = $cookieStore.get('userCookie');
 
+
             console.log($scope.item+ " item<<");
 
             $scope.searchBar = "";
@@ -51,6 +52,7 @@
                 $scope.cartItem.stockItem = item;
                 $scope.cartItem.user = $scope.currentUser;
                 $scope.cartItem.paid = false;
+                $scope.cartItem.quantity = 1;
                 CartService.addItemToCart(JSON.stringify($scope.cartItem))
                     .then(function (res) {
                         // $rootScope.updateCart();

@@ -7,6 +7,7 @@
             $scope.cartItem = {};
             $scope.currentUser = $cookieStore.get('userCookie');
             console.log($scope.item+ " item<<");
+            $scope.starRating = 2;
 
             $scope.currentItem = JSON.parse($stateParams.stockItemId);
             console.log($scope.currentItem);

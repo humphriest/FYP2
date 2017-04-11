@@ -21,9 +21,9 @@
                 return $http.post(baseUrl + '/addItemToCart', item);
             };
 
-            /*this.updateUser = function(user){
-             return $http.put(baseUrl, + '/' + user.id, user);
-             };*/
+            this.updatePaid = function(carts){
+             return $http.post(baseUrl, + '/updatePaid', carts);
+             };
 
             this.deleteProduct = function(item){
                 return $http.delete(baseUrl + '/deleteItem', item);

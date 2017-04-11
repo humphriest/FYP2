@@ -2,6 +2,7 @@ package RestApi;
 
 import DAO.CartDao;
 import DAO.UserDAO;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.Cart;
 import entities.StockItem;
@@ -36,7 +37,39 @@ public class CartApi {
     }
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(value = {"application/json"})
+    @Path("/getPurchaseHistory")
+    public List<Cart> getPurchaseHistoryByUser(String itemJson){
+        User user = null;
+        User newUser = null;
+        try {
+            user = mapUser(itemJson);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (user != null) {
+            newUser = userDao.getUserByUsername(user.getUsername());
+        }
+        if(newUser != null){
+            List<Cart> allUsersCarts = cartDao.getCartByUser(newUser);
+            List<Cart> paid = new ArrayList<>();
+            if (allUsersCarts != null){
+                for(Cart c : allUsersCarts){
+                    if(c.getPaid()){
+                        paid.add(c);
+                    }
+                }
+                return paid;
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }
+    @POST
+    @Produces(value = {"application/json"})
     @Path("/getCartByUser")
     public List<Cart> getCartByUser(String itemJson){
         User user = null;
@@ -71,20 +104,24 @@ public class CartApi {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/updatePaid")
-    public Cart updateCart(String cartJson){
-        Cart cart = null;
+    public List<Cart> updateCart(String cartsJson){
+        List<Cart> carts = null;
 
         try {
-            cart = mapCart(cartJson);
+            carts = mapMultipleCarts(cartsJson);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (cart != null) {
-            cartDao.getCartById(cart.getId());
-        }else{
+
+        if (carts != null) {
+            for(Cart c: carts){
+                c.setPaid(true);
+                cartDao.updateCart(c);
+            }
+        } else{
             return null;
         }
-        return cart;
+        return carts;
     }
 
     @POST
@@ -114,5 +151,14 @@ public class CartApi {
         cart = new ObjectMapper().readValue(jsonItem, Cart.class);
 
         return cart;
+    }
+
+    private List<Cart> mapMultipleCarts(String jsonCarts) throws IOException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        List<Cart> carts = mapper.readValue(jsonCarts, new TypeReference<List<Cart>>(){});
+        System.out.println(carts);
+
+        return carts;
     }
 }

@@ -29,6 +29,11 @@
                             Shopping Cart
                         </a>
                     </li>
+                    <li ng-if="currentUser.username != null" class="nav-item">
+                        <a class="nav-link" title="cart" ng-click="purchaseHistory()">
+                            Purchase History
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

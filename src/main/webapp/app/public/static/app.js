@@ -59,6 +59,11 @@
                     url: '/cart',
                     templateUrl: 'build/app/views/cart.html',
                     controller: 'CartController'
+                })
+                .state('app.purchases',{
+                    url: '/purchases',
+                    templateUrl: 'build/app/views/purchases.html',
+                    controller: 'PurchaseController'
                 });
         }]);
 })();

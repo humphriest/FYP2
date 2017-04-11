@@ -16,6 +16,10 @@ public class CartDao {
             persistenceUtil.persist(cart);
         }
 
+        public void updateCart(Cart cart){
+            persistenceUtil.merge(cart);
+        }
+
         public List<Cart> findAllCarts(){
             EntityManager em = persistenceUtil.createEM();
             List<Cart> carts = (List<Cart>)

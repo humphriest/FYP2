@@ -16,7 +16,9 @@ public class StockItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private int stockItemId, quantity;
+    private int stockItemId;
+    private int quantity;
+    private int averageRating;
     private String title, manuf, category, image, description;
     private double price;
 
@@ -92,6 +94,7 @@ public class StockItem {
         this.price = price;
     }
 
+    @XmlElement
     public int getQuantity() {
         return quantity;
     }
@@ -100,12 +103,22 @@ public class StockItem {
         this.quantity = quantity;
     }
 
+    @XmlElement
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @XmlElement
+    public int getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(int averageRating) {
+        this.averageRating = averageRating;
     }
 
     public StockItem() {

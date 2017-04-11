@@ -23,6 +23,10 @@
             $state.go('app.cart');
         };
 
+        $scope.purchaseHistory = function () {
+            $state.go("app.purchases");
+        };
+
         $scope.currentUser = $cookieStore.get('userCookie');
     }])
 })();

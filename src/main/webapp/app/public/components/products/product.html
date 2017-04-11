@@ -13,10 +13,13 @@
                         <h2>{{item.title}}</h2>
                         <h4>{{item.manuf}}</h4>
                         <h4>{{item.price}}</h4>
+                        <label for="input-1" class="control-label">Rate This</label>
+                        <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1">
                         <h4>Left in Stock: {{item.quantity}}</h4>
                         <p ng-if="currentUser.username != null">
                             <button class="btn btn-indigo" ng-click="addToCart(item)">Add to Cart</button>
                         </p>
+                        <div star-rating rating="starRating" click="addRating(param, i)" mouse-hover="" mouse-leave=""></div>
                     </div>
                 </div>
             </div>
