@@ -28,10 +28,10 @@
                 $scope.cartItem.user = $scope.currentUser;
                 $scope.cartItem.paid = false;
                 $scope.cartItem.quantity = 1;
-                $scope.totalPrice = 0;
+                $scope.totalPrice = item.price;
                 CartService.addItemToCart(JSON.stringify($scope.cartItem))
                     .then(function (res) {
-                       // $rootScope.updateCart();
+                        // $rootScope.updateCart();
                         console.log(res);
                     })
                     .catch(function (err) {
@@ -39,19 +39,39 @@
                     })
             };
 
-            $scope.comment = function (item) {
+            $scope.comment = function (review, item) {
                 $scope.review.body = review.body;
                 $scope.review.review = review.rating;
-                $scope.review.timeStamp = Date.now();
                 $scope.review.user = $scope.currentUser;
                 $scope.review.stockItem = item;
-                $http.post('/restful-services/reviewApi/createReview')
+                console.log("comment clicked");
+                $scope.ReviewObject = {};
+                delete $scope.review["$$hashKey"];
+                $http.post('/restful-services/reviewApi/createReview', JSON.stringify($scope.review))
                     .then(function (res) {
                         console.log(res.data);
                     })
                     .catch(function (err) {
                         console.log(err);
+                    });
+                console.log("review: ", $scope.review);
+            };
+            $scope.diffComment = function (review, item) {
+                $scope.review.body = review.body;
+                $scope.review.rating = review.rating;
+                $scope.review.user = $scope.currentUser;
+                $scope.review.stockItem = item;
+                console.log("comment clicked");
+                //$scope.ReviewObject = {};
+                //delete $scope.review["$$hashKey"];
+                $http.post('/restful-services/reviewApi/createReview', JSON.stringify($scope.review))
+                    .then(function (res) {
+                        console.log(res.data);
                     })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+                console.log("review: ", $scope.review);
             };
             $scope.getComments = function (stockItem) {
                 $http.post('/restful-services/reviewApi/getCommentByItem', stockItem)

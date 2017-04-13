@@ -1,5 +1,6 @@
 package DAO;
 
+import DAO.Services.StockItemDAOInterface;
 import entities.StockItem;
 import persistence.persistenceUtil;
 
@@ -7,7 +8,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 
-public class StockItemDAO {
+public class StockItemDAO implements StockItemDAOInterface{
 
     public void createStockItem(StockItem stockItem){
         persistenceUtil.persist(stockItem);

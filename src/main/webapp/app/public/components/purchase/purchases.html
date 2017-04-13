@@ -1,1 +1,60 @@
-<h1>This is purchases</h1>
+<h1 class="text-center">Shopping Cart</h1>
+<hr>
+<div class="container">
+    <div class="col-sm-10 col-sm-offset-1">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>
+                    Item
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Price
+                </th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="purchase in purchases">
+            <tr>
+                <td>
+                    <img class="cartImg" ng-src="{{purchase.cart.stockItem.image}}">
+                    {{purchase.cart.stockItem.title}}
+                </td>
+                <td>
+                    {{purchase.cart.quantity}}
+                </td>
+                <td>
+                    {{purchase.cart.stockItem.price}}
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td></td>
+                <td>
+                    Total Quantity: {{totalQuantity}}
+                </td>
+                <td>
+                    Total Price: {{totalPrice}}
+                </td>
+                <td></td>
+            </tr>
+            </tfoot>
+        </table>
+        <button class="btn btn-outline-danger" ng-click="purchase()">Purchase</button>
+        <!--<div class="modal fade modal-ext show" id="modal-purchase" tab-index="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="text-center"><h2>Purchase Data</h2></div>
+                    </div>
+                    <div class="modal-body">Test to see if modal shows up</div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>
+<!--
+{{carts}}-->

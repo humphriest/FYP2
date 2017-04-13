@@ -6,7 +6,7 @@
             $scope.currentUser = $cookieStore.get('userCookie');
             $scope.edit = false;
 
-            CartService.getCartByUser($scope.currentUser)
+            CartService.getCartByUser(JSON.stringify($scope.currentUser))
                 .then(function (res) {
                     $scope.carts = res.data;
                     console.log("res data: " + res.data);
@@ -39,6 +39,7 @@
 
 
             $scope.purchase = function () {
+                console.log("purchase clicked");
                 $scope.payForThis = [];
                 for (var i = 0 ; i<$scope.carts.length; i++){
                     delete $scope.carts[i]["$$hashKey"];

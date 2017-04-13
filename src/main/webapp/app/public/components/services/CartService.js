@@ -14,7 +14,10 @@
             };
 
             this.getCartByUser = function(user){
-                return $http.post(baseUrl + '/getCartByUser', user);
+                return $http.post(baseUrl + '/getCartByUser/'+false, user);
+            };
+            this.getPurchasedByUser = function(user){
+                return $http.post(baseUrl + '/getCartByUser/'+true, user);
             };
 
             this.addItemToCart = function(item){

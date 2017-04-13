@@ -1,5 +1,6 @@
 package DAO;
 
+
 import DAO.Services.CartDAOInterface;
 import entities.Cart;
 import entities.User;
@@ -9,10 +10,7 @@ import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Tim on 06/04/2017.
- */
-public class CartDao implements CartDAOInterface{
+public class PurchaseDao implements CartDAOInterface {
 
     public void createCart(Cart cart){
         persistenceUtil.persist(cart);
@@ -27,6 +25,7 @@ public class CartDao implements CartDAOInterface{
         List<Cart> carts = (List<Cart>)
                 em.createNamedQuery("cart.findAll").getResultList();
         em.close();
+
         return carts;
     }
 
@@ -40,14 +39,13 @@ public class CartDao implements CartDAOInterface{
         if(carts.size() == 0){
             return null;
         } else {
-            List<Cart> unpaid = new ArrayList<>();
-            for (Cart c : carts) {
-                if (!c.getPaid()) {
-                    unpaid.add(c);
+            List<Cart> paid = new ArrayList<>();
+            for(Cart c : carts){
+                if(c.getPaid()){
+                    paid.add(c);
                 }
             }
-            return unpaid;
-        }
+            return paid;}
     }
 
     public List<Cart> getCartById(int id){

@@ -14,37 +14,39 @@
     <schema id="9" name="world"/>
     <table id="10" parent="1" name="stockitem"/>
     <table id="11" parent="1" name="user"/>
-    <table id="12" parent="1" name="comment"/>
-    <table id="13" parent="1" name="cart"/>
-    <column id="14" parent="10" name="id">
+    <table id="12" parent="1" name="cart"/>
+    <column id="13" parent="10" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="15" parent="10" name="category">
+    <column id="14" parent="10" name="category">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="16" parent="10" name="image">
+    <column id="15" parent="10" name="image">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="17" parent="10" name="manuf">
+    <column id="16" parent="10" name="manuf">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="18" parent="10" name="price">
+    <column id="17" parent="10" name="price">
       <mandatory>1</mandatory>
       <data-type>double|0</data-type>
     </column>
-    <column id="19" parent="10" name="stockItemId">
+    <column id="18" parent="10" name="stockItemId">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="20" parent="10" name="title">
+    <column id="19" parent="10" name="title">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="21" parent="10" name="description">
+    <column id="20" parent="10" name="description">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="22" parent="10" name="quantity">
+    <column id="21" parent="10" name="quantity">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="22" parent="10" name="averageRating">
       <data-type>int(11)|0</data-type>
     </column>
     <key id="23" parent="10" name="PRIMARY">
@@ -79,82 +81,42 @@
     <column id="31" parent="12" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
-    </column>
-    <column id="32" parent="12" name="body">
-      <data-type>varchar(255)|0</data-type>
-    </column>
-    <column id="33" parent="12" name="timestamp">
-      <data-type>datetime|0</data-type>
-    </column>
-    <column id="34" parent="12" name="item_id">
-      <data-type>int(11)|0</data-type>
-    </column>
-    <column id="35" parent="12" name="user_id">
-      <data-type>int(11)|0</data-type>
-    </column>
-    <index id="36" parent="12" name="FK9BDE863F7922F007">
-      <columns>user_id</columns>
-      <desc-columns></desc-columns>
-    </index>
-    <index id="37" parent="12" name="FK9BDE863F8609E303">
-      <columns>item_id</columns>
-      <desc-columns></desc-columns>
-    </index>
-    <key id="38" parent="12" name="PRIMARY">
-      <columns>id</columns>
-      <primary>1</primary>
-    </key>
-    <foreign-key id="39" parent="12" name="FK9BDE863F8609E303">
-      <columns>item_id</columns>
-      <ref-key>~.stockitem.PRIMARY</ref-key>
-      <cascade-update-rule>restrict</cascade-update-rule>
-      <cascade-delete-rule>restrict</cascade-delete-rule>
-    </foreign-key>
-    <foreign-key id="40" parent="12" name="FK9BDE863F7922F007">
-      <columns>user_id</columns>
-      <ref-key>~.user.PRIMARY</ref-key>
-      <cascade-update-rule>restrict</cascade-update-rule>
-      <cascade-delete-rule>restrict</cascade-delete-rule>
-    </foreign-key>
-    <column id="41" parent="13" name="id">
-      <mandatory>1</mandatory>
-      <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="42" parent="13" name="paid">
+    <column id="32" parent="12" name="paid">
       <data-type>bit(1)|0</data-type>
     </column>
-    <column id="43" parent="13" name="stockItem_id">
+    <column id="33" parent="12" name="stockItem_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="44" parent="13" name="user_id">
+    <column id="34" parent="12" name="user_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="45" parent="13" name="quantity">
+    <column id="35" parent="12" name="quantity">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="46" parent="13" name="totalPrice">
+    <column id="36" parent="12" name="totalPrice">
       <data-type>double|0</data-type>
     </column>
-    <index id="47" parent="13" name="FK1FEF401FE4E72D">
+    <index id="37" parent="12" name="FK1FEF401FE4E72D">
       <columns>stockItem_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <index id="48" parent="13" name="FK1FEF407922F007">
+    <index id="38" parent="12" name="FK1FEF407922F007">
       <columns>user_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <key id="49" parent="13" name="PRIMARY">
+    <key id="39" parent="12" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <foreign-key id="50" parent="13" name="FK1FEF401FE4E72D">
+    <foreign-key id="40" parent="12" name="FK1FEF401FE4E72D">
       <columns>stockItem_id</columns>
       <ref-key>~.stockitem.PRIMARY</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="51" parent="13" name="FK1FEF407922F007">
+    <foreign-key id="41" parent="12" name="FK1FEF407922F007">
       <columns>user_id</columns>
       <ref-key>~.user.PRIMARY</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>

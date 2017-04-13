@@ -1,7 +1,9 @@
 package RestApi;
 
 import DAO.CartDao;
+import DAO.Services.CartDAOInterface;
 import DAO.UserDAO;
+import Factory.CartFactory;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.Cart;
@@ -10,6 +12,7 @@ import entities.User;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
@@ -36,10 +39,13 @@ public class CartApi {
         return cart;
     }
 
+
     @POST
     @Produces(value = {"application/json"})
-    @Path("/getPurchaseHistory")
-    public List<Cart> getPurchaseHistoryByUser(String itemJson){
+    @Path("/getCartByUser/{purchased}")
+    public List<Cart> getCartByUser(
+            @PathParam("purchased") boolean purchased,
+            String itemJson){
         User user = null;
         User newUser = null;
         try {
@@ -52,50 +58,10 @@ public class CartApi {
             newUser = userDao.getUserByUsername(user.getUsername());
         }
         if(newUser != null){
-            List<Cart> allUsersCarts = cartDao.getCartByUser(newUser);
-            List<Cart> paid = new ArrayList<>();
-            if (allUsersCarts != null){
-                for(Cart c : allUsersCarts){
-                    if(c.getPaid()){
-                        paid.add(c);
-                    }
-                }
-                return paid;
-            }else{
-                return null;
-            }
-        }else{
-            return null;
-        }
-    }
-    @POST
-    @Produces(value = {"application/json"})
-    @Path("/getCartByUser")
-    public List<Cart> getCartByUser(String itemJson){
-        User user = null;
-        User newUser = null;
-        try {
-            user = mapUser(itemJson);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            CartFactory cartFactory = new CartFactory();
+            CartDAOInterface daoInterface = cartFactory.getMethod(purchased);
 
-        if (user != null) {
-            newUser = userDao.getUserByUsername(user.getUsername());
-        }
-        if(newUser != null){
-            List<Cart> allUsersCarts = cartDao.getCartByUser(newUser);
-            List<Cart> realCart = new ArrayList<>();
-            if (allUsersCarts != null){
-                for(Cart c : allUsersCarts){
-                    if(!c.getPaid()){
-                        realCart.add(c);
-                    }
-                }
-                return realCart;
-            }else{
-                return null;
-            }
+            return daoInterface.getCartByUser(newUser);
         }else{
             return null;
         }
@@ -157,7 +123,6 @@ public class CartApi {
 
         ObjectMapper mapper = new ObjectMapper();
         List<Cart> carts = mapper.readValue(jsonCarts, new TypeReference<List<Cart>>(){});
-        System.out.println(carts);
 
         return carts;
     }

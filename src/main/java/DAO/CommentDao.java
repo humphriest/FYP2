@@ -1,18 +1,15 @@
 package DAO;
 
-import entities.Cart;
+import DAO.Services.CommentDAOInterface;
 import entities.Comment;
 import entities.StockItem;
-import entities.User;
 import persistence.persistenceUtil;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-/**
- * Created by Tim on 06/04/2017.
- */
-public class CommentDao {
+public class CommentDao implements CommentDAOInterface{
+
     public void createComment(Comment comment){
         persistenceUtil.persist(comment);
     }

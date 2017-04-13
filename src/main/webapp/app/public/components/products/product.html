@@ -2,8 +2,12 @@
     <div class="col-sm-12">
         <div class="col-sm-4 col-sm-offset-1">
             <img ng-src="{{item.image}}">
-            <div class="container">
-                {{item.description}}
+            <div class="card card-outline-primary">
+                <div class="card-title">
+                    <div class="container" style="white-space: nowrap">
+                        {{item.description}}
+                    </div>
+                </div>
             </div>
             <div class="card card-primary">
                 <div class="card-block">
@@ -12,13 +16,18 @@
                     </div>
                     <div class="card-block">
                         <div class="md-form">
-                            <label>Comment:</label>
+                            <label class="control-label">Comment:</label>
+                            <br />
                             <input title="comment" type="text" class="md-textarea" ng-model="comment.body" />
-                            <hr />
-                            <label for="input-1" class="control-label">Rate This</label>
-                            <input id="input-1" value="3" class="rating" data-min="0" data-max="5" data-step="1">
                         </div>
-                        <button type="button" class="btn btn-info" ng-click="comment(item)">Add Review</button>
+                        <hr />
+                        <div class="md-form">
+                            <label class="control-label">Rate This</label>
+                            <br />
+                            <input value="3" type="number" title="rating" ng-model="comment.rating" class="rating" data-min="0" data-max="5" data-step="1">
+                        </div>
+                        <button type="button" class="btn btn-info" ng-click="comment(comment, item)">Add Review</button>
+                        <button type="button" class="btn btn-info" ng-click="diffComment(comment, item)">Add Diff Review</button>
                     </div>
                 </div>
             </div>

@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @Path("/reviewApi")
@@ -27,6 +28,10 @@ public class ReviewApi {
             comment = mapComment(jsonItem);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        Date date = new Date();
+        if (comment != null) {
+            comment.setTimestamp(date);
         }
         commentDao.createComment(comment);
         return comment;
