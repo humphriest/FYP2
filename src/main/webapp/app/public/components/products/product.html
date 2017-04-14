@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="col-sm-12">
+        <div class="col-sm-4 col-sm-offset-1">
+            <img ng-src="{{item.image}}">
+            <div class="card card-outline-primary">
+                <div class="card-title">
+                    <div class="container" style="white-space: nowrap">
+                        {{item.description}}
+                    </div>
+                </div>
+            </div>
+            <div class="card card-primary">
+                <div class="card-block">
+                    <div class="card-title">
+                        Review
+                    </div>
+                    <div class="card-block">
+                        <div class="md-form">
+                            <label class="control-label">Comment:</label>
+                            <br />
+                            <input title="comment" type="text" class="md-textarea" ng-model="comment.body" />
+                        </div>
+                        <hr />
+                        <div class="md-form">
+                            <label class="control-label">Rate This</label>
+                            <br />
+                            <input value="3" type="number" title="rating" ng-model="comment.rating" class="rating" data-min="0" data-max="5" data-step="1">
+                        </div>
+                        <button type="button" class="btn btn-info" ng-click="comment(comment, item)">Add Review</button>
+                        <button type="button" class="btn btn-info" ng-click="diffComment(comment, item)">Add Diff Review</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5 col-sm-offset-1">
+            <div class="card card-outline-primary">
+                <div class="card-block">
+                    <div class="container">
+                        <h2>{{item.title}}</h2>
+                        <h4>{{item.manuf}}</h4>
+                        <h4>{{item.price}}</h4>
+                        <label for="rating" class="control-label">Rate This</label>
+                        <input id="rating" value="item.averageRating" class="rating" data-min="0" data-max="5" data-step="1">
+                        <h4>Left in Stock: {{item.quantity}}</h4>
+                        <p ng-if="currentUser.username != null">
+                            <button class="btn btn-indigo" ng-click="addToCart(item)">Add to Cart</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div ng-if="currentUser.admin == true">
+        Update stock Item
+        <labek>Price:</labek><input type="text" class="form-control" ng-model="price">
+        <button class="btn btn-info" ng-click="updateItem(price)">Update</button>
+    </div>
+</div>

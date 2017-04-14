@@ -1,8 +1,8 @@
 (function(){
     'use strict';
 
-    App.controller('TopNavBarController', ['$scope','$state',
-    function($scope, $state){
+    App.controller('TopNavBarController', ['$scope','$state','$cookieStore',
+    function($scope, $state, $cookieStore){
 
         $scope.nav = 'nav';
 
@@ -12,6 +12,21 @@
 
         $scope.login = function () {
             $state.go('login')
-        }
+        };
+
+        $scope.logout = function () {
+          $cookieStore.remove('userCookie');
+            $state.go('login');
+        };
+
+        $scope.viewCart = function () {
+            $state.go('app.cart');
+        };
+
+        $scope.purchaseHistory = function () {
+            $state.go("app.purchases");
+        };
+
+        $scope.currentUser = $cookieStore.get('userCookie');
     }])
 })();

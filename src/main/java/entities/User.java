@@ -1,41 +1,38 @@
 package entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @NamedQueries({
+        @NamedQuery(name = "User.findAll", query = "select u from User u"),
         @NamedQuery(name = "User.findByUsername", query = "select u from User u where u.username=:username")
 })
 
 @Entity
+@XmlRootElement
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
     private String username;
     private String password;
     private String address;
     private int age;
-    private boolean isAdmin;
+    private boolean admin;
 
 
-    public User(String username, String address, String password, int age, boolean isAdmin) {
+    public User(String username, String address, String password, int age, boolean admin) {
         this.username = username;
         this.password = password;
         this.address = address;
         this.age = age;
-        this.isAdmin = isAdmin;
+        this.admin = admin;
 
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
+    @XmlElement
     public int getId() {
         return id;
     }
@@ -44,6 +41,7 @@ public class User {
         this.id = id;
     }
 
+    @XmlElement
     public String getAddress() {
         return address;
     }
@@ -52,7 +50,7 @@ public class User {
         this.address = address;
     }
 
-
+    @XmlElement
     public int getAge() {
         return age;
     }
@@ -61,6 +59,7 @@ public class User {
         this.age = age;
     }
 
+    @XmlElement
     public String getUsername() {
         return username;
     }
@@ -69,6 +68,7 @@ public class User {
         this.username = username;
     }
 
+    @XmlElement
     public String getPassword() {
         return password;
     }
@@ -77,17 +77,19 @@ public class User {
         this.password = password;
     }
 
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    void notifyOfUpdate(StockItem item, double oldPrice){
+            System.out.println(item.getTitle()+ "'s price has changed from " + oldPrice+" to "+ item.getPrice());
+    }
+
     public User() {
     }
 
-    /*@ManyToOne(optional = false)
-    private Comment comments;
-
-    public Comment getComments() {
-        return comments;
-    }
-
-    public void setComments(Comment comments) {
-        this.comments = comments;
-    }*/
 }

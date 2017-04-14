@@ -1,0 +1,39 @@
+.custom-card {
+    margin-bottom:15px;
+    height:200px;
+}
+.photo img{
+    height: 160px;
+    width: 160px;
+    padding: 10px 0 10px 20px;
+}
+.title{
+    color: #5D6267;
+    font-weight: bold;
+    text-align: center;
+}
+.manuf{
+
+}
+.price{
+    font-size: 40px;
+    color: #E3444E;
+    text-align: center;
+}
+.login-card{
+    padding: 0 20px 0 10px;
+}
+.register-card{
+    margin-top:120px;
+    padding: 0 20px 10px 0;
+}
+.shopping-cart{
+    cursor: pointer;
+}
+.nav-item{
+    padding: 0 10px !important;
+}
+img .cartImg{
+    height: 40px;
+    width: 40px;
+}

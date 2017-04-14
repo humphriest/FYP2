@@ -1,5 +1,6 @@
 package DAO;
 
+import DAO.Services.UserDAOInterface;
 import entities.User;
 import persistence.persistenceUtil;
 
@@ -7,7 +8,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 
-public class UserDAO {
+public class UserDAO implements UserDAOInterface{
 
     public void createUser(User user){
         persistenceUtil.persist(user);
@@ -24,5 +25,14 @@ public class UserDAO {
             return null;
         } else
             return users.get(0);
+    }
+
+    public List<User> getAllUsers(){
+        EntityManager em = persistenceUtil.createEM();
+        List<User> users = (List<User>)
+                em.createNamedQuery("User.findAll").getResultList();
+        em.close();
+
+        return users;
     }
 }

@@ -4,7 +4,9 @@
     window.App = angular.module('electricStore', [
         'ngAnimate',
         'ngResource',
-        'ui.router'
+        'ui.router',
+        'ngCookies',
+        'ngStorage'
     ])
         .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
             $locationProvider.html5Mode(false);
@@ -34,16 +36,34 @@
                     url: '/products',
                     templateUrl: 'build/app/views/products.html',
                     controller: 'ProductsController'
+                })
+                .state('app.product',{
+                    url: '/product/:stockItemId',
+                    templateUrl: 'build/app/views/product.html',
+                    controller: 'ProductController',
+                    params:{
+                        'stockItemId': ''
+                    }
+                })
+                .state('app.createProduct',{
+                    url: '/createProduct',
+                    templateUrl: 'build/app/views/createProduct.html',
+                    controller: 'ProductsController'
+                })
+                .state('app.register',{
+                    url: '/register',
+                    templateUrl: 'build/app/views/register.html',
+                    controller: 'RegisterController'
+                })
+                .state('app.cart',{
+                    url: '/cart',
+                    templateUrl: 'build/app/views/cart.html',
+                    controller: 'CartController'
+                })
+                .state('app.purchases',{
+                    url: '/purchases',
+                    templateUrl: 'build/app/views/purchases.html',
+                    controller: 'PurchaseController'
                 });
-            /*.state('signup',{
-             url: '/signup',
-             controller: 'SignupController',
-             templateUrl: 'build/app/views/signup.html'
-             })*/
         }]);
-    /*
-
-     var injector = angular.injector(['ng']);
-     var $http = injector.get("$http");*/
-
 })();

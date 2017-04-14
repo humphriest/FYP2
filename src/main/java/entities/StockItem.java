@@ -1,6 +1,12 @@
 package entities;
 
+import DAO.UserDAO;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
+import java.util.List;
 
 @NamedQueries({
         @NamedQuery(name = "stockItem.findAll", query = "select i from StockItem i"),
@@ -8,24 +14,32 @@ import javax.persistence.*;
 })
 
 @Entity
+@XmlRootElement
 public class StockItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int stockItemId;
-    private String title, manuf, category, image;
+    private int quantity;
+    private int averageRating;
+    private String title, manuf, category, image, description;
     private double price;
 
-    public StockItem(int stockItemId, String title, String manuf, String category, String image, double price) {
-        this.stockItemId = stockItemId;
+    @OneToMany
+    private List<User> users = new ArrayList<>();
 
+    public StockItem(int stockItemId, String title, String manuf, String category, String image, double price, int quantity, String description) {
+        this.stockItemId = stockItemId;
         this.title = title;
         this.manuf = manuf;
         this.category = category;
         this.image = image;
         this.price = price;
+        this.quantity = quantity;
+        this.description = description;
     }
+    @XmlElement
     public int getStockItemId() {
         return stockItemId;
     }
@@ -33,7 +47,7 @@ public class StockItem {
     public void setStockItemId(int stockItemId) {
         this.stockItemId = stockItemId;
     }
-
+    @XmlElement
     public int getId() {
         return id;
     }
@@ -42,6 +56,7 @@ public class StockItem {
         this.id = id;
     }
 
+    @XmlElement
     public String getTitle() {
         return title;
     }
@@ -50,6 +65,7 @@ public class StockItem {
         this.title = title;
     }
 
+    @XmlElement
     public String getManuf() {
         return manuf;
     }
@@ -58,6 +74,7 @@ public class StockItem {
         this.manuf = manuf;
     }
 
+    @XmlElement
     public String getCategory() {
         return category;
     }
@@ -66,6 +83,7 @@ public class StockItem {
         this.category = category;
     }
 
+    @XmlElement
     public String getImage() {
         return image;
     }
@@ -74,6 +92,7 @@ public class StockItem {
         this.image = image;
     }
 
+    @XmlElement
     public double getPrice() {
         return price;
     }
@@ -82,18 +101,44 @@ public class StockItem {
         this.price = price;
     }
 
+    @XmlElement
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @XmlElement
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @XmlElement
+    public int getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(int averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public void updatePrice(StockItem item, double oldPrice){
+        System.out.println("Inside updatePrice in StockItem");
+        UserDAO userDAO = new UserDAO();
+        List<User> allUsers = userDAO.getAllUsers();
+        for(User user: allUsers){
+            System.out.print(user.getUsername()+" has been notified that the ");
+            user.notifyOfUpdate(item, oldPrice);
+        }
+    }
 
     public StockItem() {
     }
 
-    /*@ManyToOne(optional = false)
-    private Comment comments;
-
-    public Comment getComments() {
-        return comments;
-    }
-
-    public void setComments(Comment comments) {
-        this.comments = comments;
-    }*/
 }

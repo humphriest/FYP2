@@ -1,33 +1,35 @@
 package entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.*;
 
 @NamedQueries({
-        @NamedQuery(name = "comment.findAll", query = "select c from Comment c")
+        @NamedQuery(name = "comment.findAll", query = "select c from Comment c"),
+        @NamedQuery(name = "comment.findByItem", query = "select c from Comment c where c.item=:item")
 })
 
 @Entity
+@XmlRootElement
 public class Comment {
 
     public Comment(){}
 
-    /*public Comment(User user, StockItem item){
-        this.user = user;
-        this.item = item;
-    }*/
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String body;
     private Date timestamp;
+    private int rating;
 
-    /*@OneToMany(mappedBy = "comments")
-    protected User user;
+    @ManyToOne
+    private User user;
 
-    @OneToMany(mappedBy = "comments")
-    protected StockItem item;*/
+    @ManyToOne
+    private StockItem item;
 
+    @XmlElement
     public int getId() {
         return id;
     }
@@ -36,6 +38,7 @@ public class Comment {
         this.id = id;
     }
 
+    @XmlElement
     public String getBody() {
         return body;
     }
@@ -44,6 +47,7 @@ public class Comment {
         this.body = body;
     }
 
+    @XmlElement
     public Date getTimestamp() {
         return timestamp;
     }
@@ -52,8 +56,34 @@ public class Comment {
         this.timestamp = timestamp;
     }
 
-    public Comment(int id, String body, Date timestamp) {
+    @XmlElement
+    public int getRating() {
+        return rating;
+    }
 
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    @XmlElement
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @XmlElement
+    public StockItem getItem() {
+        return item;
+    }
+
+    public void setItem(StockItem item) {
+        this.item = item;
+    }
+
+    public Comment(int id, String body, Date timestamp) {
         this.id = id;
         this.body = body;
         this.timestamp = timestamp;

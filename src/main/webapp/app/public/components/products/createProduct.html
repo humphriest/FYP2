@@ -1,0 +1,41 @@
+<div class="col-sm-5 col-sm-offset-3">
+    <div class="container-fluid">
+        <div class="form-group">
+            <label class="control-label">Item Id</label>
+            <input class="form-control" title="stockItemId" type="text" ng-model="item.stockItemId" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label">title</label>
+            <input class="form-control" type="text" title="title" ng-model="item.title" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="category">Category</label>
+            <select id="category" ng-model="item.category">
+                <option value="tv">Television</option>
+                <option value="watch">Watch</option>
+                <option value="laptop">Laptop</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Manufacturer</label>
+            <input class="form-control" type="text" title="manuf" ng-model="item.manuf" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Image</label>
+            <input class="form-control" type="text" title="image" ng-model="item.image" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Price</label>
+            <input class="form-control" type="number" min="0" title="price" ng-model="item.price" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="form2" class="">Description</label>
+            <input class="form-control" type="text" id="form2" ng-model="item.description" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="quantity">Quantity</label>
+            <input class="form-control"  type="number" id="quantity" ng-model="item.quantity" required>
+        </div>
+        <button class="btn btn-primary" ng-click="saveItemNotStringify()">Save Item</button>
+    </div>
+</div>
