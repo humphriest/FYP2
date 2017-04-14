@@ -17,9 +17,9 @@
                 return $http.post(baseUrl + '/createItem/', item);
             };
 
-            /*this.updateUser = function(user){
-                return $http.put(baseUrl, + '/' + user.id, user);
-            };*/
+            this.updateItem = function(p, id){
+                return $http.post(baseUrl, + '/updatePrice/'+p +"/"+id);
+            };
 
             this.deleteProduct = function(item){
                 return $http.delete(baseUrl + '/deleteItem', item);

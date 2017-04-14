@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @NamedQueries({
+        @NamedQuery(name = "User.findAll", query = "select u from User u"),
         @NamedQuery(name = "User.findByUsername", query = "select u from User u where u.username=:username")
 })
 
@@ -82,6 +83,10 @@ public class User {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    void notifyOfUpdate(StockItem item, double oldPrice){
+            System.out.println(item.getTitle()+ "'s price has changed from " + oldPrice+" to "+ item.getPrice());
     }
 
     public User() {

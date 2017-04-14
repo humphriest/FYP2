@@ -2,7 +2,7 @@
   "name": "electricStore",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "mailer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,7 +18,8 @@
   "homepage": "https://github.com/humphriest/fyp2#readme",
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "bootstrap-star-rating": "^4.0.2"
+    "bootstrap-star-rating": "^4.0.2",
+    "nodemailer": "^4.0.1"
   },
   "devDependencies": {
     "chai": "~3.0.0",

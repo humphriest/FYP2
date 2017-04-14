@@ -45,10 +45,16 @@
                         <p ng-if="currentUser.username != null">
                             <button class="btn btn-indigo" ng-click="addToCart(item)">Add to Cart</button>
                         </p>
-                        <!--<div star-rating rating="starRating" click="addRating(param, i)" mouse-hover="" mouse-leave=""></div>-->
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div ng-if="currentUser.admin == true">
+        Update stock Item
+        <labek>Price:</labek><input type="text" class="form-control" ng-model="price">
+        <button class="btn btn-info" ng-click="updateItem(price)">Update</button>
     </div>
 </div>

@@ -1,8 +1,12 @@
 package entities;
 
+import DAO.UserDAO;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
+import java.util.List;
 
 @NamedQueries({
         @NamedQuery(name = "stockItem.findAll", query = "select i from StockItem i"),
@@ -21,6 +25,9 @@ public class StockItem {
     private int averageRating;
     private String title, manuf, category, image, description;
     private double price;
+
+    @OneToMany
+    private List<User> users = new ArrayList<>();
 
     public StockItem(int stockItemId, String title, String manuf, String category, String image, double price, int quantity, String description) {
         this.stockItemId = stockItemId;
@@ -119,6 +126,16 @@ public class StockItem {
 
     public void setAverageRating(int averageRating) {
         this.averageRating = averageRating;
+    }
+
+    public void updatePrice(StockItem item, double oldPrice){
+        System.out.println("Inside updatePrice in StockItem");
+        UserDAO userDAO = new UserDAO();
+        List<User> allUsers = userDAO.getAllUsers();
+        for(User user: allUsers){
+            System.out.print(user.getUsername()+" has been notified that the ");
+            user.notifyOfUpdate(item, oldPrice);
+        }
     }
 
     public StockItem() {

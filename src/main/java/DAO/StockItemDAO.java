@@ -14,6 +14,12 @@ public class StockItemDAO implements StockItemDAOInterface{
         persistenceUtil.persist(stockItem);
     }
 
+    public void updateItem(StockItem item, Double num){
+        persistenceUtil.merge(item); // merge new item
+        //pass through old price and new item to notify users
+        item.updatePrice(item, num); // not sure if this part is correct
+    }
+
 
     public List<StockItem> findAllItems(){
         EntityManager em = persistenceUtil.createEM();

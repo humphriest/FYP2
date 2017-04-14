@@ -26,4 +26,13 @@ public class UserDAO implements UserDAOInterface{
         } else
             return users.get(0);
     }
+
+    public List<User> getAllUsers(){
+        EntityManager em = persistenceUtil.createEM();
+        List<User> users = (List<User>)
+                em.createNamedQuery("User.findAll").getResultList();
+        em.close();
+
+        return users;
+    }
 }

@@ -82,7 +82,18 @@
                     .catch(function (err) {
                         console.log(err);
                     });
-            }
+            };
 
+            $scope.updateItem = function (p) {
+                //$scope.item.price = p;
+                $http.post('/restful-services/stockApi/updatePrice/'+p+'/'+$scope.currentItem)
+                //ProductService.updateItem(p,$scope.currentItem)
+                    .then(function (res) {
+                        console.log("res:", res.data);
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    })
+            }
         }])
 })();
