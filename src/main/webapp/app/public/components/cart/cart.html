@@ -54,17 +54,13 @@
             </tfoot>
         </table>
         <button class="btn btn-outline-danger" ng-click="purchase()">Purchase</button>
-        <!--<div class="modal fade modal-ext show" id="modal-purchase" tab-index="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="text-center"><h2>Purchase Data</h2></div>
-                    </div>
-                    <div class="modal-body">Test to see if modal shows up</div>
-                </div>
-            </div>
-        </div>-->
+
     </div>
 </div>
+<h1 class="text-center">Shipping Options</h1>
+<div ng-repeat="ship in shippingPrices">
+    <h3 class="text-center">{{ship.company}}: €{{ship.finalPrice}}</h3>
+</div>
 <!--
-{{carts}}-->
+{{shippingPrices}}
+-->
