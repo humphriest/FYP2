@@ -1,6 +1,6 @@
 package DAO;
 
-import DAO.Services.StockItemDAOInterface;
+import Services.StockItemDAOInterface;
 import entities.StockItem;
 import persistence.persistenceUtil;
 

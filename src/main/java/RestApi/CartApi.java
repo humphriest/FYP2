@@ -1,13 +1,12 @@
 package RestApi;
 
 import DAO.CartDao;
-import DAO.Services.CartDAOInterface;
+import Services.CartDAOInterface;
 import DAO.UserDAO;
 import Factory.CartFactory;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.Cart;
-import entities.StockItem;
 import entities.User;
 
 import javax.ws.rs.POST;
@@ -16,7 +15,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Path("/cartApi")

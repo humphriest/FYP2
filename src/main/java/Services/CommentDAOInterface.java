@@ -1,4 +1,4 @@
-package DAO.Services;
+package Services;
 
 import entities.Comment;
 import entities.StockItem;

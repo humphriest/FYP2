@@ -19,6 +19,7 @@
                     $scope.getComments($scope.item);
                     console.log($scope.item +" item");
                     console.log(res.data +" res item");
+                    
                 }, function(err){
                     console.log(err);
                 });
@@ -94,6 +95,8 @@
                     .catch(function (err) {
                         console.log(err);
                     })
-            }
+            };
+
+            
         }])
 })();

@@ -1,6 +1,6 @@
 package DAO;
 
-import DAO.Services.CommentDAOInterface;
+import Services.CommentDAOInterface;
 import entities.Comment;
 import entities.StockItem;
 import persistence.persistenceUtil;
