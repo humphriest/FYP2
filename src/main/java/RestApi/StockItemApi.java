@@ -17,7 +17,9 @@ public class StockItemApi {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/createItem")
     public StockItem createItem(String jsonItem){
-        StockItem item = null;
+
+        StockItem item = StockItem.getInstance();
+
         try {
             item = mapStockItem(jsonItem);
         } catch (IOException e) {

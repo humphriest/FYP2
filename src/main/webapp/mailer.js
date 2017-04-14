@@ -1,5 +1,6 @@
+/*
 var nodemailer = require("nodemailer");
-
+var exports = module.exports();
 var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Gmail",  // sets automatically host, port and connection security settings
     auth: {
@@ -15,7 +16,7 @@ var mailOptions = {
     text: "Email Example with nodemailer"
 };
 
-smtpTransport.sendMail(mailOptions, function(error, response){
+exports.smtpTransport.sendMail(mailOptions, function(error, response){
     if(error){
         console.log(error);
     }else{
@@ -24,3 +25,4 @@ smtpTransport.sendMail(mailOptions, function(error, response){
 
     smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
 });
+*/

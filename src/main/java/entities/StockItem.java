@@ -17,6 +17,8 @@ import java.util.List;
 @XmlRootElement
 public class StockItem {
 
+    private static StockItem instance = new StockItem();
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -136,6 +138,10 @@ public class StockItem {
             System.out.print(user.getUsername()+" has been notified that the ");
             user.notifyOfUpdate(item, oldPrice);
         }
+    }
+
+    public static StockItem getInstance(){
+        return instance;
     }
 
     public StockItem() {

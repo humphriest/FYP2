@@ -28,5 +28,19 @@
         };
 
         $scope.currentUser = $cookieStore.get('userCookie');
+
+
+        /*var UserRoleStrategy = function () {
+
+            this.admin = function () {
+                $rootScope.admin = true;
+            };
+
+            this.normalUser = function () {
+                $rootScope.admin = false;
+            };
+
+            return this.normalUser();
+        }*/
     }])
 })();

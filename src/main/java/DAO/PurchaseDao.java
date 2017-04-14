@@ -1,7 +1,7 @@
 package DAO;
 
 
-import DAO.Services.CartDAOInterface;
+import Services.CartDAOInterface;
 import entities.Cart;
 import entities.User;
 import persistence.persistenceUtil;

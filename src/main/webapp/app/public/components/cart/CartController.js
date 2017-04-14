@@ -12,6 +12,7 @@
                     console.log("res data: " + res.data);
                     $scope.overallQuantity();
                     $scope.overallPrice();
+                    $scope.showStrategy();
                 })
                 .catch(function (err) {
                     console.log(err);
@@ -52,7 +53,104 @@
                     .catch(function (err) {
                         console.log(err)
                     })
-            }
+            };
 
+            $scope.shippingPrices = [];
+
+            var Shipping = function() {
+                this.company = "";
+            };
+
+            Shipping.prototype = {
+                setStrategy: function(company) {
+                    this.company = company;
+                },
+
+                calculate: function(purchase) {
+                    return this.company.calculate(purchase);
+                }
+            };
+
+            var UPS = function() {
+                var result  = {
+                    finalPrice :0,
+                    company: "UPS"
+                };
+                this.calculate = function(pack) {
+                    if(pack.price < 1000){
+                        result.finalPrice = 50;
+                    }else{
+                        result.finalPrice = 150;
+                    }
+                    if(pack.quantity < 5){
+                        result.finalPrice += 30;
+                    } else{
+                        result.finalPrice += 100;
+                    }
+                    $scope.shippingPrices.push(result);
+                    return result;
+                }
+            };
+
+            var USPS = function() {
+                var result  = {
+                    finalPrice :0,
+                    company: "USPS"
+                };
+                this.calculate = function(pack) {
+                    if(pack.price < 2000){
+                        result.finalPrice = 100;
+                    }else{
+                        result.finalPrice = 200;
+                    }
+                    if(pack.quantity < 7){
+                        result.finalPrice += 50;
+                    } else{
+                        result.finalPrice += 130;
+                    }
+                    $scope.shippingPrices.push(result);
+                    return result;
+                }
+            };
+
+            var Fedex = function() {
+                var result  = {
+                    finalPrice :0,
+                    company: "Fedex"
+                };
+                this.calculate = function(pack) {
+                    if(pack.price < 2500){
+                        result.finalPrice = 150;
+                    }else{
+                        result.finalPrice = 250;
+                    }
+                    if(pack.quantity < 10){
+                        result.finalPrice += 120;
+                    } else{
+                        result.finalPrice += 180;
+                    }
+                    $scope.shippingPrices.push(result);
+                    return result;
+                }
+            };
+
+            $scope.showStrategy = function () {
+                var usps = new USPS();
+                var ups = new UPS();
+                var fedex = new Fedex();
+
+                var pack = {
+                    quantity : $scope.totalQuantity,
+                    price : $scope.totalPrice
+                };
+
+                var shipping = new Shipping();
+                shipping.setStrategy(usps);
+                console.log("USPS calculate " + shipping.calculate(pack));
+                shipping.setStrategy(ups);
+                console.log("ups calculate " + shipping.calculate(pack));
+                shipping.setStrategy(fedex);
+                console.log("fedex calculate " + shipping.calculate(pack));
+            }
         }])
 })();

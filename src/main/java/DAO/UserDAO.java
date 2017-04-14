@@ -1,6 +1,6 @@
 package DAO;
 
-import DAO.Services.UserDAOInterface;
+import Services.UserDAOInterface;
 import entities.User;
 import persistence.persistenceUtil;
 

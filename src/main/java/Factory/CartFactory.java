@@ -3,7 +3,7 @@ package Factory;
 
 import DAO.CartDao;
 import DAO.PurchaseDao;
-import DAO.Services.CartDAOInterface;
+import Services.CartDAOInterface;
 
 public class CartFactory {
 
